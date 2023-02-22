@@ -33,15 +33,15 @@ create .babelrc:
 # for typescript
 
 ```
-npm install -D @types/react@17.0.39 @types/react-dom@17.0.11
+npm install -D @types/react @types/react-dom
 npx tsc --init
 ```
 
 npx: execute npm binary packages from the npm repo
-legenerálja a tsconfig.json file-t
+this generates the tsconfig.json file
 
-- a tsconfig-ban a target legyen es2021,
-- uncomment-eld a "jsx": "preserve" sort
+- inside tsconfig.json the target should be es2021
+- uncomment line: "jsx": "preserve"
 
 ## eslint for typescript
 
@@ -49,10 +49,9 @@ legenerálja a tsconfig.json file-t
 npm i -D eslint-import-resolver-typescript @typescript-eslint/eslint-plugin @typescript-eslint/parser
 ```
 
-package.json-ban a lint-hez adjuk hozzá a ts és tsx filetípusokat
+inside package.json add ts and tsx to the lint script
 
-eslintrc-ben: az extendsbe (a prettier elé! annak mindig utolsonak kell lennie)
-irjuk be ezt:
+Add the following to eslintrc, inside the extends section (BEFORE prettier. prettier must always be the last one)
 
 ```
 'plugin:@typescript-eslint/recommended',
@@ -60,26 +59,26 @@ irjuk be ezt:
 
 ```
 
-a requiring-type-checking miatt meg kell mondanunk a parserOptions-ben hogy hol a tsconfig.json file:
+also add the following inside eslintrc so eslint knows where the tsconfig file is
 
 ```
   project: ['./tsconfig.json'],
 
 ```
 
-rules-nal erdemes ezt kikapcsolni:
+this rule can be disabled:
 
 ```
 '@typescript-eslint/no-empty-function' : 0
 ```
 
-plugins-nel:
+in the plugins, enable:
 
 ```
 '@typescript-eslint',
 ```
 
-settings-be (react után):
+in the settings (after react)
 
 ```
 'import/parsers': {
@@ -92,4 +91,4 @@ settings-be (react után):
 }
 ```
 
-ezután ha npm run lint-et futtatunk lesz egy csomó hibánk.
+after this if you run npm run lint, you should see the linter reporting typescript related errors as well

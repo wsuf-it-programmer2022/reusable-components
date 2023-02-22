@@ -114,7 +114,7 @@ const options = [
 // and it returns JSX
 const App = () => {
   const [counterValue, setCounterValue] = useState(0);
-  // JSX is a special syntax that allows us to write HTML
+  // JSX is a special syntax that allows us to write HTML-like syntax
   // inside of our JavaScript files
   return (
     <div className='flex-center'>
