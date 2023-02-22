@@ -1,5 +1,6 @@
 import { createRoot } from 'react-dom/client';
-import React, { StrictMode } from 'react';
+import React, { StrictMode, useState } from 'react';
+import Counter from './components/Counter/Counter';
 
 const dropdownOptions = [
   'apple',
@@ -104,10 +105,22 @@ const options = [
   'watermelon'
 ];
 
+// kebab-case: for css
+// camelCase : for js
+// PascalCase : for React components
+
+// this is a react component because
+// it starts with a capital letter
+// and it returns JSX
 const App = () => {
+  const [counterValue, setCounterValue] = useState(0);
+  // JSX is a special syntax that allows us to write HTML
+  // inside of our JavaScript files
   return (
     <div className='flex-center'>
       <h1 style={{ textAlign: 'center' }}>Rendered</h1>
+      <h1 style={{ textAlign: 'center' }}>count: {counterValue}</h1>
+      <Counter min={0} max={10} onChange={setCounterValue} />
     </div>
   );
 };
@@ -115,6 +128,7 @@ const App = () => {
 // https://reactjs.org/docs/strict-mode.html
 const container = document.getElementById('root');
 const root = createRoot(container);
+// SctrictMode renders the component twice!!
 root.render(
   <StrictMode>
     <App />
