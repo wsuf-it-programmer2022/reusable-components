@@ -1,6 +1,8 @@
 import { createRoot } from 'react-dom/client';
 import React, { StrictMode, useState } from 'react';
 import Counter from './components/Counter/Counter';
+import Header from './components/Header/Header';
+import Dropdown from './components/Dropdown/Dropdown';
 
 const dropdownOptions = [
   'apple',
@@ -113,14 +115,34 @@ const options = [
 // it starts with a capital letter
 // and it returns JSX
 const App = () => {
+  const myObj = { a: 2, b: 4 };
+  // javascript feature: object destructuring
+  const { a } = myObj;
+
+  const myArr = [3, 5];
+  const [x, y] = myArr;
+
+  // The input parameter of useState is the initial value
+  // of our state.
+  // useState function always returns an array of two elemnts;
+  // the first element of the array is the state variable
+  // second element of the array is a function which sets the value
+  // of that state variable
   const [counterValue, setCounterValue] = useState(0);
   // JSX is a special syntax that allows us to write HTML-like syntax
   // inside of our JavaScript files
+
+  // this line:
+  // React.createElement('div', { id: 'my-app' }, 'This is my app');
+  // equivalent to:
+  // <div id="my-app">This is my app</div>
+
   return (
     <div className='flex-center'>
-      <h1 style={{ textAlign: 'center' }}>Rendered</h1>
+      {/* <Header title='This is my title' /> */}
       <h1 style={{ textAlign: 'center' }}>count: {counterValue}</h1>
       <Counter min={0} max={10} onChange={setCounterValue} />
+      <Dropdown options={dropdownOptions} />
     </div>
   );
 };
