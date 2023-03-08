@@ -3,6 +3,9 @@ import React, { StrictMode, useState } from 'react';
 import Counter from './components/Counter/Counter';
 import Header from './components/Header/Header';
 import Dropdown from './components/Dropdown/Dropdown';
+import SearchField from './components/SearchField/SearchField';
+import Memo from './Memo';
+import Callback from './Callback';
 
 const dropdownOptions = [
   'apple',
@@ -137,12 +140,26 @@ const App = () => {
   // equivalent to:
   // <div id="my-app">This is my app</div>
 
+  const [checked, setChecked] = useState(false);
+  const [dropdownOption, setDropdownOption] = useState('');
+
   return (
     <div className='flex-center'>
+      <input
+        type='checkbox'
+        checked={checked}
+        onChange={() => {
+          setChecked(!checked);
+        }}
+      />
+      {/* <Memo /> */}
+      {/* <Callback /> */}
       {/* <Header title='This is my title' /> */}
-      <h1 style={{ textAlign: 'center' }}>count: {counterValue}</h1>
-      <Counter min={0} max={10} onChange={setCounterValue} />
-      <Dropdown options={dropdownOptions} />
+      {/* <h2 style={{ textAlign: 'center' }}>count: {counterValue}</h2> */}
+      {/* <Counter min={0} max={10} onChange={setCounterValue} /> */}
+      {/* <h2 style={{ textAlign: 'center' }}>Dropdown Option: {dropdownOption}</h2> */}
+      {/* {checked && <Dropdown options={dropdownOptions} onChange={setDropdownOption} />} */}
+      <SearchField options={options} />
     </div>
   );
 };
@@ -151,8 +168,4 @@ const App = () => {
 const container = document.getElementById('root');
 const root = createRoot(container);
 // SctrictMode renders the component twice!!
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
+root.render(<App />);
